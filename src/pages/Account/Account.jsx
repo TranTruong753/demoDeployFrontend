@@ -10,7 +10,7 @@ import { useForm } from "antd/es/form/Form";
 import { accountGetAPI, accountPostAPI, accountPutAPI, accountDeleteAPI } from "@/Services/AccountService";
 import { rolesGetAPI } from "@/Services/RoleService";
 import { QueryClient, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { employeeGetAllAPI } from "@/Services/employeeService";
+import { employeeGetAllAPI } from "@/Services/EmployeeService";
 import { Link } from "react-router-dom"
 import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
 

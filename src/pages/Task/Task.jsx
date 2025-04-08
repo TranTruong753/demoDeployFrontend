@@ -20,13 +20,13 @@ import { CalendarSchedule } from "@/components/CalendarSchedule";
 import { UploadOutlined, SearchOutlined, InboxOutlined } from "@ant-design/icons";
 
 import { Button, message, Upload } from "antd";
-import { taskGetWithId } from "@/services/TaskService";
+import { taskGetWithId } from "@/Services/TaskService";
 import { QueryClient, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useAuth } from "@/hooks/use-auth";
 import { formatDate, getRandomColor } from "@/utils/cn";
 import TitleTooltip from "@/components/tooltip/TitleTooltip";
 import FileUpload from './test';
-import { fileAssignmentPostAPI } from '@/services/FileService';
+import { fileAssignmentPostAPI } from '@/Services/FileService';
 
 import { FileCard } from "@/components/FileCard"
 
@@ -107,7 +107,7 @@ const Task = () => {
             queryClient.invalidateQueries(["tasks"]);
         }
     }, [taskSocket, queryClient]);
-    
+
     const { mutate: addFileAssignment, isLoading: isAdding } = useMutation({
         mutationFn: fileAssignmentPostAPI,
         onSuccess: () => {
@@ -121,7 +121,7 @@ const Task = () => {
             console.log(error)
         },
     });
-   
+
 
 
 
@@ -168,7 +168,7 @@ const Task = () => {
         setOpenDrawerCheckList(false);
     }
 
-   
+
     const columns = [
         {
             title: "Tên công việc",
@@ -324,7 +324,7 @@ const Task = () => {
     };
 
     const handleUpload = () => {
-        
+
         if (taskSelectData) {
             const task_assignment_id = taskSelectData.assignment_id;
 
@@ -379,7 +379,7 @@ const Task = () => {
             </Modal>
 
             <div className="mt-5">
-               
+
                 <Table
                     columns={columns}
                     dataSource={taskData}
@@ -441,7 +441,7 @@ const Task = () => {
                 </Flex>
             </Drawer>
 
-          
+
         </>
     );
 };

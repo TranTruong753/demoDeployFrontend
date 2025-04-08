@@ -275,15 +275,15 @@ const Project = () => {
                     </a> */}
 
                     <Button
-                            shape="circle"
-                            size="medium"
-                            color="gold"
-                            variant="solid"
-                            onClick={() => handleEditProject(record)}
+                        shape="circle"
+                        size="medium"
+                        color="gold"
+                        variant="solid"
+                        onClick={() => handleEditProject(record)}
 
-                        >
-                            <Pencil size={18} />
-                        </Button>
+                    >
+                        <Pencil size={18} />
+                    </Button>
 
                     {/* <Popconfirm
                         placement="bottomRight"
@@ -313,7 +313,7 @@ const Project = () => {
                         >
                             <FaEye className="text-lg" />
                         </Button>
-                       
+
                     </Link>
                 </Space>
             ),

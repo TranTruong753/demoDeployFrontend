@@ -218,10 +218,10 @@ const Department = () => {
             onFilter: (value, record) => record.name.toLowerCase().includes(value.toLowerCase()), // So sánh không phân biệt hoa/thường
             filterSearch: true,
         },
-        { 
-            title: "Trưởng Phòng", 
-            dataIndex: "manager", 
-            key: "manager" ,
+        {
+            title: "Trưởng Phòng",
+            dataIndex: "manager",
+            key: "manager",
             filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
                 <div style={{ padding: 8 }}>
                     {/* Tùy chỉnh dropdown filter */}
@@ -253,7 +253,7 @@ const Department = () => {
             ),
             onFilter: (value, record) => record.manager.toLowerCase().includes(value.toLowerCase()), // So sánh không phân biệt hoa/thường
             filterSearch: true,
-            
+
         },
         { title: "Mô tả", dataIndex: "description", key: "description" },
         // { title: 'Trạng Thái', dataIndex: 'is_deleted', key: 'is_deleted', render: (text) => <Tag color={text === "Ngừng hoạt động" ? "volcano" : "green"}>{text}</Tag> },

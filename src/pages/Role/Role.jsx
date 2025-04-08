@@ -152,41 +152,39 @@ const Role = () => {
                     is_deleted: false,
                 };
                 rolePutAPI(datasave, idEdit).then((r1) => {
-                    if(r1.data)
-                    {
+                    if (r1.data) {
                         var r = r1.data;
 
 
-                        if(r1.status ==200)
-                            {
-                                var objectRoles = data2.map((item) => {
-                                    return {
-                                        can_view: item.can_view,
-                                        can_create: item.can_create,
-                                        can_update: item.can_update,
-                                        can_delete: item.can_delete,
-                                        feature: item.key,
-                                        role: r.id,
-                                    };
-                                });
-        
-                                objectRoles.forEach((item) => {
-                                    rolesDetailPostAPI(item).then((r2) => {
-                                        if (r2.status != 201) {
-                                            checkedEdit = false;
-                                        }
-                                    });
-                                });
-        
-                                if (checkedEdit) {
-                                    alert("Cập nhật nhóm quyền thành công!");
-                                    setIsEditRole(false);
-                                }
-                            }
+                        if (r1.status == 200) {
+                            var objectRoles = data2.map((item) => {
+                                return {
+                                    can_view: item.can_view,
+                                    can_create: item.can_create,
+                                    can_update: item.can_update,
+                                    can_delete: item.can_delete,
+                                    feature: item.key,
+                                    role: r.id,
+                                };
+                            });
 
-                            
+                            objectRoles.forEach((item) => {
+                                rolesDetailPostAPI(item).then((r2) => {
+                                    if (r2.status != 201) {
+                                        checkedEdit = false;
+                                    }
+                                });
+                            });
+
+                            if (checkedEdit) {
+                                alert("Cập nhật nhóm quyền thành công!");
+                                setIsEditRole(false);
+                            }
+                        }
+
+
                     }
-                   
+
                 });
             }
         } catch (error) {

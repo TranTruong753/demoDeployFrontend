@@ -115,7 +115,7 @@ const ProjectDetail = () => {
         queryFn: () => projectPartGetAPI(id), // Để React Query tự gọi API khi cần
         enabled: !!id, // Chỉ chạy khi id có giá trị hợp lệ
     });
-    
+
     // Thêm 1 phần dự án
     const { data: newProjectPart, mutate: mutateProjectPart } = useMutation({
         mutationFn: projectPartPostAPI,
@@ -197,7 +197,7 @@ const ProjectDetail = () => {
         return taskData;
     };
 
- 
+
 
     useEffect(() => {
         if (Project_parts_List) {
@@ -1026,7 +1026,7 @@ const ProjectDetail = () => {
                 setIsModalOpen={setIsModalHistoryOpen}
             ></ShowHistory> */}
 
-     
+
         </>
     );
 };

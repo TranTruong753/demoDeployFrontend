@@ -10,9 +10,9 @@ export const AuthProvider = ({ children }) => {
     const [employeeContext, setEmployeeContext] = useState([]);
     // console.log("AuthProvider 1 lần", auth)
     const loadRoleUser = async (idRole) => {
-       
-     
-       
+
+
+
         if (idRole) {
 
             const res = await axiosInstance.get(`/roles/${idRole}`);
@@ -23,7 +23,7 @@ export const AuthProvider = ({ children }) => {
             //         headers: { Authorization: `Bearer ${token}` }
             //     });
             //     setFeatures(res.data.role_details);
-           
+
             // } catch (err) {
             //     console.error("Lỗi lấy role:", err);
             // }
@@ -33,11 +33,11 @@ export const AuthProvider = ({ children }) => {
     useEffect(() => {
         // console.log("loadRoleUser useEffect")
         const authStorage = JSON.parse(localStorage.getItem("auth"));
-        if(authStorage){
+        if (authStorage) {
             setAuth(authStorage);
-            if(authStorage.employee){
+            if (authStorage.employee) {
                 setEmployeeContext(authStorage.employee);
-                console.log('authStorage.employee',employeeContext)
+                console.log('authStorage.employee', employeeContext)
             }
             loadRoleUser(authStorage.role.id); // Load khi app chạy
         }

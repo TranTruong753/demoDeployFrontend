@@ -1,4 +1,4 @@
-import React, { useState,useEffect  } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import { Drawer, Table, Flex, Switch, Space, Button, Tag, Input } from 'antd';
 import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
@@ -12,54 +12,53 @@ import { QueryClient, useMutation, useQuery, useQueryClient } from "@tanstack/re
 const DrawerFile = ({ taskDataSelectFormTable, setTaskDataSelectFormTable, setDoersData, setDoerSelected, setChildrenDrawer, queryClient,
     doersData, doerSelected, childrenDrawer, openDrawerCheckList, setOpenDrawerCheckList, file_list }) => {
 
-        const [recordData,setRecordData] = useState(null);
+    const [recordData, setRecordData] = useState(null);
 
-        useEffect(() => {
-          
-       
+    useEffect(() => {
 
-            // Cập nhật doerSelected nếu có file mới
-           if(file_list){
-            console.log("file_list",file_list)
-            const isFile = hasAssignmentId (recordData,file_list.file_detail.task_assignment.id)
-            console.log("file_list hasAssignmentId",isFile)
-                if( !recordData.subtasks || recordData.subtasks.length === 0){
-                    if(recordData.id_assignment === file_list.file_detail.task_assignment.id)
-                    {
-                        setDoerSelected(prevData => {
-                            return {
-                                ...prevData, // Giữ nguyên dữ liệu cũ
-                                files: [
-                                    ...prevData.files, 
-                                    { 
-                                        ...file_list.file_detail.file, 
-                                        link: `http://127.0.0.1:8000${file_list.file_detail.file.link}` // Thêm "http" vào link
-                                    }
-                                ] // Thêm file vào mảng files
-                            };
-                        });
-                    }
-                }else if(isFile){
+
+
+        // Cập nhật doerSelected nếu có file mới
+        if (file_list) {
+            console.log("file_list", file_list)
+            const isFile = hasAssignmentId(recordData, file_list.file_detail.task_assignment.id)
+            console.log("file_list hasAssignmentId", isFile)
+            if (!recordData.subtasks || recordData.subtasks.length === 0) {
+                if (recordData.id_assignment === file_list.file_detail.task_assignment.id) {
                     setDoerSelected(prevData => {
                         return {
                             ...prevData, // Giữ nguyên dữ liệu cũ
                             files: [
-                                ...prevData.files, 
-                                { 
-                                    ...file_list.file_detail.file, 
+                                ...prevData.files,
+                                {
+                                    ...file_list.file_detail.file,
                                     link: `http://127.0.0.1:8000${file_list.file_detail.file.link}` // Thêm "http" vào link
                                 }
                             ] // Thêm file vào mảng files
                         };
                     });
                 }
-             
-         
-           }
-            
-         
-    ;
-        }, [file_list]);
+            } else if (isFile) {
+                setDoerSelected(prevData => {
+                    return {
+                        ...prevData, // Giữ nguyên dữ liệu cũ
+                        files: [
+                            ...prevData.files,
+                            {
+                                ...file_list.file_detail.file,
+                                link: `http://127.0.0.1:8000${file_list.file_detail.file.link}` // Thêm "http" vào link
+                            }
+                        ] // Thêm file vào mảng files
+                    };
+                });
+            }
+
+
+        }
+
+
+        ;
+    }, [file_list]);
 
     // sửa 1 thông tin
     const { mutate: mutatePatchTaskAssignment, isLoading: addPatchtaskAssLoading } = useMutation({
@@ -119,15 +118,15 @@ const DrawerFile = ({ taskDataSelectFormTable, setTaskDataSelectFormTable, setDo
             if (currentTask.doers?.some(doer => doer.id_assignment === idToFind)) {
                 return true;
             }
-    
+
             // Kiểm tra tiếp trong subtasks
             if (currentTask.subtasks && currentTask.subtasks.length > 0) {
                 return currentTask.subtasks.some(subtask => checkDoers(subtask));
             }
-    
+
             return false;
         };
-    
+
         return checkDoers(task);
     };
 

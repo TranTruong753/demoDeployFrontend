@@ -1,5 +1,5 @@
 import axios from "axios";
-import axiosInstance  from "@/Services/AxiosInstance";
+import axiosInstance from "@/Services/AxiosInstance";
 
 const api = "http://127.0.0.1:8000/api/project-parts/";
 
@@ -15,7 +15,7 @@ const api = "http://127.0.0.1:8000/api/project-parts/";
 
 export const projectPartPostAPI = async (obj) => {
     try {
-        const response = await axiosInstance.post('/project-parts/',obj);
+        const response = await axiosInstance.post('/project-parts/', obj);
         console.log("projectPartGetAPI", response);
         return response.data;
     } catch (error) {

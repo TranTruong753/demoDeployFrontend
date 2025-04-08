@@ -1,21 +1,21 @@
-import React, {useState , useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import PageHeader from "@/components/PageHeader";
-import { Table, Drawer, Form, Input, Select, Space, Button, Popconfirm, Tag , Avatar , Tooltip  } from "antd";
+import { Table, Drawer, Form, Input, Select, Space, Button, Popconfirm, Tag, Avatar, Tooltip } from "antd";
 import { Link } from "react-router-dom";
 import { QueryClient, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import EmptyTemplate from "@/components/emptyTemplate/EmptyTemplate";
 
-import {projectPartArchivedGetAPIWithIdDepartment} from "@/Services/ProjectPartService"
+import { projectPartArchivedGetAPIWithIdDepartment } from "@/Services/ProjectPartService"
 import { useAuth } from "@/hooks/use-auth";
-import ButtonIcon  from "@/components/ButtonIcon";
-import {formatDate, getInitials, getRandomColor  } from "@/utils/cn"
+import ButtonIcon from "@/components/ButtonIcon";
+import { formatDate, getInitials, getRandomColor } from "@/utils/cn"
 
-import {Plus } from "lucide-react"
+import { Plus } from "lucide-react"
 
 import TitleTooltip from "@/components/tooltip/TitleTooltip";
 
- // Đường dẫn
- const itemsBreadcrumb = [
+// Đường dẫn
+const itemsBreadcrumb = [
     {
         title: <Link to="/">Trang chủ</Link>,
     },
@@ -76,8 +76,8 @@ const TaskArchive = () => {
         return taskData;
     };
 
-     //láy dự án với id được truyền qua url
-     const { data: project_part, isLoading } = useQuery({
+    //láy dự án với id được truyền qua url
+    const { data: project_part, isLoading } = useQuery({
         queryKey: ["taskArchive"], // Thêm id vào queryKey để cache riêng biệt
         queryFn: () => projectPartArchivedGetAPIWithIdDepartment(employeeContext.department), // Để React Query tự gọi API khi cần
         enabled: !!employeeContext.department, // Chỉ chạy khi id có giá trị hợp lệ
@@ -88,7 +88,7 @@ const TaskArchive = () => {
             title: "Tên công việc",
             dataIndex: "name",
             key: "name",
-           
+
             render: (text) => (
                 <>
                     <p>{text}</p>
@@ -136,7 +136,7 @@ const TaskArchive = () => {
             title: "Ngày bắt đầu",
             dataIndex: "startTime",
             key: "startTime",
-          
+
             sorter: (a, b) => {
                 const dateA = new Date(a.startTime.split("-").reverse().join("-"));
                 const dateB = new Date(b.startTime.split("-").reverse().join("-"));
@@ -147,7 +147,7 @@ const TaskArchive = () => {
             title: "Ngày kết thúc",
             dataIndex: "endTime",
             key: "endTime",
-         
+
             sorter: (a, b) => {
                 const dateA = new Date(a.endTime.split("-").reverse().join("-"));
                 const dateB = new Date(b.endTime.split("-").reverse().join("-"));
@@ -160,7 +160,7 @@ const TaskArchive = () => {
             title: "Ưu tiên",
             dataIndex: "priority",
             key: "priority",
-         
+
             render: (text) =>
                 text === "Thấp" ? (
                     <Tag color="green">{text}</Tag>
@@ -224,7 +224,7 @@ const TaskArchive = () => {
         // },
     ];
 
-     // Cấu hình cột PARTS
+    // Cấu hình cột PARTS
     const partColumns = [
         // { title: "Mã phần", dataIndex: "key", key: "key" },
         {
@@ -320,11 +320,11 @@ const TaskArchive = () => {
                                 ></TitleTooltip>
                             }
                         >
-                            <Avatar 
-                            // style={{ backgroundColor: getRandomColor() }}
-                               className="bg-blue-500"
-                            > 
-                            {getInitials(value.name)}
+                            <Avatar
+                                // style={{ backgroundColor: getRandomColor() }}
+                                className="bg-blue-500"
+                            >
+                                {getInitials(value.name)}
                             </Avatar>
                         </Tooltip>
                     </Avatar.Group>
@@ -341,7 +341,7 @@ const TaskArchive = () => {
             },
         },
         // { title: "Cập nhật gần nhất", dataIndex: "updated_at", key: "updated_at" },
-       
+
     ];
 
     // Cấu hình cột TASKS
@@ -354,7 +354,7 @@ const TaskArchive = () => {
             render: (text, record) => (
                 <>
                     <a>{text}</a>
-                  
+
                 </>
             ),
             filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
@@ -448,10 +448,10 @@ const TaskArchive = () => {
                                 ></TitleTooltip>
                             }
                         >
-                            <Avatar 
-                            // style={{ backgroundColor: getRandomColor() }} 
-                            className="bg-blue-500"
-                            > 
+                            <Avatar
+                                // style={{ backgroundColor: getRandomColor() }} 
+                                className="bg-blue-500"
+                            >
                                 {getInitials(value.name)}
                             </Avatar>
                         </Tooltip>
@@ -522,12 +522,12 @@ const TaskArchive = () => {
                                 <Avatar style={{ backgroundColor: getRandomColor() }}> {item.name.split(" ").reverse().join(" ").charAt(0)}</Avatar>
                             </Tooltip>
                         ))}
-                       
+
                     </Avatar.Group>
                 </>
             ),
         },
-     
+
     ];
 
     useEffect(() => {
@@ -554,7 +554,7 @@ const TaskArchive = () => {
                 triggerAsc: "Sắp xếp tăng dần",
                 cancelSort: "Hủy sắp xếp",
             }}
-       
+
             pagination={false}
             indentSize={20}
             childrenColumnName={"subtasks"}
@@ -565,7 +565,7 @@ const TaskArchive = () => {
         <>
 
             <PageHeader title={"Công Việc lưu trữ"} itemsBreadcrumb={itemsBreadcrumb}>
-               
+
             </PageHeader>
 
             <div className="mt-5">

@@ -3,9 +3,9 @@ import { Outlet } from "react-router-dom";
 import { useMediaQuery } from "@uidotdev/usehooks";
 import { useClickOutside } from "@/hooks/use-click-outside";
 
-import { Sidebar } from "@/components/sidebar";
-import { Header } from "@/components/header";
-import { Footer } from "@/components/footer";
+import { Sidebar } from "@/components/Sidebar";
+import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
 
 import { cn } from "@/utils/cn";
 import { useEffect, useRef, useState } from "react";
